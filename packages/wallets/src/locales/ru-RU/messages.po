@@ -1,0 +1,844 @@
+msgid ""
+msgstr ""
+"POT-Creation-Date: 2021-02-08 18:51+0100\n"
+"Mime-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: @lingui/cli\n"
+"Language: ru_RU\n"
+"Project-Id-Version: 1263bc1f20e1271bda78e84d2f4a6562\n"
+"Report-Msgid-Bugs-To: \n"
+"PO-Revision-Date: 2023-03-29 23:28\n"
+"Last-Translator: \n"
+"Language-Team: Russian\n"
+"Plural-Forms: nplurals=4; plural=((n%10==1 && n%100!=11) ? 0 : ((n%10 >= 2 && n%10 <=4 && (n%100 < 12 || n%100 > 14)) ? 1 : ((n%10 == 0 || (n%10 >= 5 && n%10 <=9)) || (n%100 >= 11 && n%100 <= 14)) ? 2 : 3));\n"
+"X-Crowdin-Project: 1263bc1f20e1271bda78e84d2f4a6562\n"
+"X-Crowdin-Project-ID: 1\n"
+"X-Crowdin-Language: ru\n"
+"X-Crowdin-File: /[ball-network.ssdcoin-blockchain-gui] main/packages/wallets/src/locales/en-US/messages.po\n"
+"X-Crowdin-File-ID: 1308\n"
+
+#: src/components/WalletHistory.tsx:117
+msgid "-"
+msgstr "-"
+
+#: src/components/WalletSend.tsx:366
+msgid "- Memo helps the receiver side to identify the payment.<0/>- Anything you enter will be publicly accessible on the blockchain."
+msgstr ""
+
+#: src/components/WalletSend.tsx:293
+msgid "- Set a time frame which allows you claw back (revoke) the transaction.<0/>- Recipient of the transaction can only claim the funds once that time frame expires."
+msgstr ""
+
+#: src/components/WalletHistory.tsx:117
+msgid "+"
+msgstr "+"
+
+#: src/components/WalletHeader.tsx:71
+msgid "Actions"
+msgstr "Действия"
+
+#: src/components/cat/WalletCATCreateExistingSimple.tsx:79
+msgid "Add"
+msgstr "Добавить"
+
+#: src/components/WalletSend.tsx:287
+msgid "Add option to claw back transaction"
+msgstr ""
+
+#: src/components/cat/WalletCATCreateExistingSimple.tsx:61
+#: src/components/cat/WalletCATCreateSimple.tsx:68
+#: src/components/WalletsManageTokens.tsx:155
+msgid "Add Token"
+msgstr "Добавить токен"
+
+#: src/components/WalletSend.tsx:361
+msgid "Add transaction memo"
+msgstr ""
+
+#: src/components/cat/WalletCATCreateSimple.tsx:92
+msgid "Adding {0} token"
+msgstr "Добавление {0} токенов"
+
+#: src/components/WalletReceiveAddress.tsx:57
+msgid "Address"
+msgstr "Адрес"
+
+#: src/components/cat/WalletCATSend.tsx:196
+#: src/components/WalletSend.tsx:220
+#~ msgid "Address / Puzzle hash"
+#~ msgstr "Адрес / Хэш-головоломка"
+
+#: src/components/AddressBookAutocomplete.tsx:66
+msgid "Address or Contact"
+msgstr ""
+
+#: src/components/cat/WalletCATSend.tsx:207
+#: src/components/WalletSend.tsx:240
+msgid "Amount"
+msgstr "Количество"
+
+#: src/components/WalletHeader.tsx:33
+msgid "Are you sure you want to delete unconfirmed transactions?"
+msgstr "Вы действительно хотите удалить неподтвержденные транзакции?"
+
+#: src/components/WalletHistory.tsx:128
+msgid "Asset"
+msgstr ""
+
+#: src/components/cat/WalletCATCreateExistingSimple.tsx:71
+#: src/components/cat/WalletCATTAILDialog.tsx:33
+#: src/components/cat/WalletCATTAILDialog.tsx:43
+msgid "Asset Id"
+msgstr "ID Актива"
+
+#: src/constants/WalletName.ts:11
+msgid "Atomic Swap Wallet"
+msgstr "Кошелек для атомарного обмена"
+
+#: src/constants/WalletName.ts:14
+msgid "Authorized Payee Wallet"
+msgstr "Авторизованный Payee кошелек"
+
+#: src/components/ClawbackClaimTransactionDialog.tsx:227
+msgid "Auto-claim transactions with this fee from now on."
+msgstr ""
+
+#: src/components/standard/nftRecover/NFTRecover.tsx:185
+msgid "Available Balance"
+msgstr ""
+
+#: src/components/WalletSend.tsx:335
+msgid "Before sending this transaction, you should ensure that the recipient has a wallet that can claim it manually after the timer has expired."
+msgstr ""
+
+#: src/components/WalletHistoryClawbackChip.tsx:61
+msgid "Can be claimed in "
+msgstr ""
+
+#: src/components/PasteMnemonic.tsx:76
+#: src/components/WalletRenameDialog.tsx:72
+msgid "Cancel"
+msgstr "Отмена"
+
+#: src/components/cat/WalletCATSend.tsx:118
+#: src/components/WalletSend.tsx:152
+msgid "Cannot send ssdcoin to coloured address. Please enter a ssdcoin address."
+msgstr "Не удается отправить SSDCoin по цветному адресу. Пожалуйста, введите обычный адрес SSDCoin."
+
+#: src/components/WalletsSidebar.tsx:130
+#~ msgid "Check my snapshot balance"
+#~ msgstr "Проверить баланс моего снимка"
+
+#: src/components/WalletHistoryClawbackChip.tsx:68
+msgid "Claim transaction"
+msgstr ""
+
+#: src/components/ClawbackClaimTransactionDialog.tsx:137
+#: src/components/ClawbackClaimTransactionDialog.tsx:260
+msgid "Claim Transaction"
+msgstr ""
+
+#: src/components/WalletHistoryClawbackChip.tsx:83
+msgid "Claiming..."
+msgstr ""
+
+#: src/components/WalletHistory.tsx:429
+msgid "Claw back expiration"
+msgstr ""
+
+#: src/components/WalletHistoryClawbackChip.tsx:94
+msgid "Claw back this transaction"
+msgstr ""
+
+#: src/components/ClawbackClaimTransactionDialog.tsx:260
+msgid "Claw back Transaction"
+msgstr ""
+
+#: src/components/ClawbackClaimTransactionDialog.tsx:137
+msgid "Claw Back Transaction"
+msgstr ""
+
+#: src/components/ClawbackClaimTransactionDialog.tsx:129
+msgid "Clawback payment claimed"
+msgstr ""
+
+#: src/components/ClawbackClaimTransactionDialog.tsx:129
+msgid "Clawback payment clawed back"
+msgstr ""
+
+#: src/components/WalletSend.tsx:333
+msgid "Clawback will be applied."
+msgstr ""
+
+#: src/components/WalletSend.tsx:343
+msgid "Clawback will not be applied."
+msgstr ""
+
+#: src/components/WalletHistoryClawbackChip.tsx:109
+msgid "Clawing back..."
+msgstr ""
+
+#: src/components/WalletsSidebar.tsx:141
+#~ msgid "Click here to download an older version of the wallet"
+#~ msgstr "Нажмите здесь, чтобы загрузить более раннюю версию кошелька"
+
+#: src/components/ClawbackClaimTransactionDialog.tsx:158
+#: src/components/ClawbackClaimTransactionDialog.tsx:249
+msgid "Close"
+msgstr ""
+
+#: src/components/WalletHeader.tsx:28
+msgid "Confirmation"
+msgstr "Подтверждение"
+
+#: src/components/WalletHistory.tsx:197
+msgid "Confirmed"
+msgstr "Подтверждено"
+
+#: src/components/WalletHistory.tsx:418
+msgid "Confirmed at Height"
+msgstr "Подтверждено на блоке"
+
+#: src/components/WalletConnections.tsx:47
+msgid "Connection type"
+msgstr "Тип подключения"
+
+#: src/components/standard/nftRecover/NFTRecover.tsx:160
+msgid "contract address"
+msgstr ""
+
+#: src/components/WalletReceiveAddressField.tsx:71
+msgid "Copied"
+msgstr ""
+
+#: src/components/WalletReceiveAddressField.tsx:75
+msgid "Copy wallet address"
+msgstr ""
+
+#: src/components/cat/WalletCATSelect.tsx:32
+msgid "Create New Wallet"
+msgstr "Создать новый кошелек"
+
+#: src/components/cat/WalletCAT.tsx:104
+#: src/components/standard/WalletStandard.tsx:54
+msgid "Create Offer"
+msgstr "Создать Предложение"
+
+#: src/components/standard/staking/WalletStakingSend.tsx:95
+msgid "Create Staking"
+msgstr ""
+
+#: src/components/cat/WalletCATSend.tsx:179
+#: src/components/WalletSend.tsx:212
+msgid "Create Transaction"
+msgstr "Создать транзакцию"
+
+#: src/components/WalletHistory.tsx:220
+msgid "Creation Date"
+msgstr ""
+
+#: src/constants/WalletName.ts:20
+msgid "Custody Wallet"
+msgstr "Кошелек для хранения"
+
+#: src/components/cat/WalletCATCreateSimple.tsx:100
+msgid "Custom"
+msgstr "Настраиваемый"
+
+#: src/constants/WalletName.ts:38
+msgid "Datalayer Wallet"
+msgstr ""
+
+#: src/components/WalletHistory.tsx:100
+#~ msgid "Date"
+#~ msgstr "Дата"
+
+#: src/components/WalletHeader.tsx:29
+msgid "Delete"
+msgstr "Удалить"
+
+#: src/components/WalletHeader.tsx:77
+msgid "Delete Unconfirmed Transactions"
+msgstr "Удалить неподтвержденные транзакции"
+
+#: src/components/card/WalletCardTotalBalance.tsx:68
+msgid "Derivation Index: {0}"
+msgstr "Индекс деривации"
+
+#: src/constants/WalletName.ts:29
+msgid "DID Wallet"
+msgstr "DID кошелек"
+
+#: src/components/WalletSend.tsx:326
+msgid "Disable"
+msgstr ""
+
+#: src/components/create/WalletCreateList.tsx:39
+msgid "Distributed Identity"
+msgstr ""
+
+#: src/components/WalletImport.tsx:157
+msgid "Enter the {mnemonicWordCount} word mnemonic that you have saved in order to restore your SSDCoin wallet."
+msgstr ""
+
+#: src/components/cat/WalletCATSend.tsx:128
+msgid "Error the entered address appears to be for a different colour."
+msgstr "Ошибка введенный адрес, кажется, для другого цвета."
+
+#: src/components/standard/nftRecover/NFTRecover.tsx:107
+msgid "Failed"
+msgstr ""
+
+#: src/components/standard/nftRecover/NFTRecover.tsx:107
+#~ msgid "FAILED"
+#~ msgstr ""
+
+#: src/components/cat/WalletCATSend.tsx:245
+#: src/components/WalletSend.tsx:389
+msgid "Farm"
+msgstr "Ферма"
+
+#: src/components/cat/WalletCATSend.tsx:221
+#: src/components/WalletHistory.tsx:234
+#: src/components/WalletSend.tsx:253
+msgid "Fee"
+msgstr "Комиссия"
+
+#: src/components/standard/nftRecover/NFTRecover.tsx:148
+msgid "Find"
+msgstr ""
+
+#: src/components/ClawbackClaimTransactionDialog.tsx:176
+msgid "From:"
+msgstr ""
+
+#: src/components/WalletReceiveAddress.tsx:32
+msgid "HD or Hierarchical Deterministic keys are a type of public key/private key scheme where one private key can have a nearly infinite number of different public keys (and therefore wallet receive addresses) that will all ultimately come back to and be spendable by a single private key."
+msgstr "HD или иерархические детерминированные ключи - это тип открытой схемы ключ/закрытого ключа, в которой один закрытый ключ может иметь почти бесконечное количество различных открытых ключей (и поэтому прием адресов), которые в конечном итоге будут возвращаться и расходоваться одним приватным ключом."
+
+#: src/components/WalletSendTransactionResultDialog.tsx:41
+msgid "If you would like to speed up the transaction, please delete unconfirmed transactions and retry with a higher fee."
+msgstr "Если вы хотите ускорить транзакцию, удалите неподтвержденные транзакции и повторите попытку с более высокой комиссией."
+
+#: src/components/PasteMnemonic.tsx:79
+msgid "Import"
+msgstr "Импорт"
+
+#: src/components/WalletImport.tsx:225
+msgid "Import from {alternativeWordCount} word mnemonic"
+msgstr ""
+
+#: src/components/WalletImport.tsx:140
+msgid "Import Wallet from Mnemonics"
+msgstr "Импортировать кошелек из мнемоники"
+
+#: src/components/WalletHistory.tsx:87
+#~ msgid "Incoming"
+#~ msgstr "Входящие"
+
+#: src/components/WalletConnections.tsx:22
+msgid "IP address"
+msgstr "IP адрес"
+
+#: src/components/standard/nftRecover/NFTRecover.tsx:134
+msgid "Launcher Id"
+msgstr ""
+
+#: src/components/WalletConnections.tsx:71
+msgid "List of connections is empty"
+msgstr "Список соединений пуст"
+
+#: src/components/WalletsManageTokens.tsx:132
+msgid "Manage token list"
+msgstr "Управление списком токенов"
+
+#: src/components/cat/WalletCATSend.tsx:235
+#: src/components/WalletSend.tsx:378
+msgid "Memo"
+msgstr ""
+
+#: src/components/WalletHistory.tsx:423
+msgid "Memos"
+msgstr ""
+
+#: src/components/WalletSendTransactionResultDialog.tsx:16
+msgid "Mempool Full"
+msgstr "Mempool заполнен"
+
+#: src/components/WalletConnections.tsx:40
+msgid "MiB Up/Down"
+msgstr "МиБ Исх./Вх."
+
+#: src/constants/WalletName.ts:17
+msgid "Multi Sig Wallet"
+msgstr "Кошелек с несколькими подписями"
+
+#: src/components/cat/WalletCATCreateExistingSimple.tsx:68
+msgid "Name"
+msgstr "Имя"
+
+#: src/components/WalletReceiveAddress.tsx:45
+msgid "New Address"
+msgstr "Новый адрес"
+
+#: src/components/WalletReceiveAddressField.tsx:114
+msgid "New Receive Address"
+msgstr ""
+
+#: src/components/WalletAdd.tsx:62
+msgid "New Wallet"
+msgstr "Новый кошелек"
+
+#: src/components/WalletAdd.tsx:122
+#: src/components/WalletImport.tsx:195
+msgid "Next"
+msgstr "Далее"
+
+#: src/components/WalletHeader.tsx:56
+msgid "nft Recover"
+msgstr ""
+
+#: src/components/standard/nftRecover/NFTRecover.tsx:116
+msgid "NFT Recover"
+msgstr ""
+
+#: src/constants/WalletName.ts:35
+msgid "NFT Wallet"
+msgstr "Кошелек NFT"
+
+#: src/components/WalletHeader.tsx:56
+#~ msgid "nftRecover"
+#~ msgstr ""
+
+#: src/components/WalletRenameDialog.tsx:67
+msgid "Nickname"
+msgstr "Псевдоним"
+
+#: src/components/WalletHistory.tsx:500
+msgid "No previous transactions"
+msgstr "Нет предыдущих транзакций"
+
+#: src/components/WalletConnections.tsx:18
+msgid "Node ID"
+msgstr "Идентификатор узла"
+
+#: src/components/WalletHistory.tsx:412
+#: src/components/WalletHistory.tsx:419
+msgid "Not Available"
+msgstr "Не определено"
+
+#: src/components/standard/nftRecover/NFTRecover.tsx:177
+#: src/components/standard/nftRecover/NFTRecover.tsx:178
+msgid "Not Available Balance"
+msgstr ""
+
+#: src/components/standard/nftRecover/NFTRecover.tsx:91
+msgid "not find contract address, Please enter a contract address"
+msgstr ""
+
+#: src/components/WalletStatus.tsx:58
+msgid "Not Synced"
+msgstr "Не синхронизирован"
+
+#: src/components/WalletHistory.tsx:206
+msgid "Offer Accepted"
+msgstr "Предложение Принято"
+
+#: src/components/cat/WalletCATTAILDialog.tsx:66
+msgid "OK"
+msgstr "OK"
+
+#: src/components/cat/WalletCATSend.tsx:182
+#: src/components/WalletSend.tsx:215
+msgid "On average there is one minute between each transaction block. Unless there is congestion you can expect your transaction to be included in less than a minute."
+msgstr "В среднем между каждым блоком транзакций проходит одна минута. Если нет перегрузки, вы можете ожидать что ваша транзакция будет включена менее чем за минуту."
+
+#: src/components/WalletHistory.tsx:87
+#~ msgid "Outgoing"
+#~ msgstr "Исходящие"
+
+#: src/components/WalletImport.tsx:233
+msgid "Paste Mnemonic"
+msgstr "Вставить мнемонику"
+
+#: src/components/PasteMnemonic.tsx:53
+msgid "Paste Mnemonic ({0} words)"
+msgstr ""
+
+#: src/components/WalletHistory.tsx:199
+msgid "Pending"
+msgstr "Ожидающие"
+
+#: src/components/card/WalletCardPendingBalance.tsx:40
+msgid "Pending Balance"
+msgstr "Баланс в ожидании"
+
+#: src/components/card/WalletCardPendingChange.tsx:41
+msgid "Pending Change"
+msgstr "Сдача в ожидании"
+
+#: src/components/WalletHistoryPending.tsx:63
+msgid "Pending claw back transactions"
+msgstr ""
+
+#: src/components/card/WalletCardPendingTotalBalance.tsx:41
+msgid "Pending Total Balance"
+msgstr "Ожидаемый итоговый баланс"
+
+#: src/components/ClawbackClaimTransactionDialog.tsx:207
+msgid "Please enter a transaction fee to claim the above amount:"
+msgstr ""
+
+#: src/components/ClawbackClaimTransactionDialog.tsx:209
+msgid "Please enter a transaction fee to claw back the above amount:"
+msgstr ""
+
+#: src/components/cat/WalletCATCreateExistingSimple.tsx:42
+msgid "Please enter a valid asset id"
+msgstr "Пожалуйста, введите действительный идентификатор актива"
+
+#: src/components/standard/nftRecover/NFTRecover.tsx:75
+msgid "Please enter a valid NFT Launcher Id"
+msgstr ""
+
+#: src/components/cat/WalletCATSend.tsx:104
+#: src/components/standard/staking/WalletStakingSend.tsx:67
+#: src/components/standard/staking/WalletStakingWithdraw.tsx:67
+#: src/components/WalletSend.tsx:142
+msgid "Please enter a valid numeric amount"
+msgstr "Пожалуйста, укажите корректное численное значение"
+
+#: src/components/cat/WalletCATSend.tsx:109
+#: src/components/WalletSend.tsx:147
+msgid "Please enter a valid numeric fee"
+msgstr "Пожалуйста, укажите корректное численное значение комиссии"
+
+#: src/components/cat/WalletCATCreateExistingSimple.tsx:46
+msgid "Please enter a valid token name"
+msgstr "Пожалуйста, правильно введите имя токена"
+
+#: src/components/WalletRenameDialog.tsx:41
+msgid "Please enter valid wallet name"
+msgstr "Пожалуйста, введите корректное имя кошелька"
+
+#: src/components/cat/WalletCATSend.tsx:95
+#: src/components/standard/staking/WalletStakingSend.tsx:62
+#: src/components/standard/staking/WalletStakingWithdraw.tsx:62
+#: src/components/WalletSend.tsx:137
+msgid "Please finish syncing before making a transaction"
+msgstr "Пожалуйста, завершите синхронизацию перед совершением транзакции"
+
+#: src/components/cat/WalletCATCreateExistingSimple.tsx:38
+#: src/components/cat/WalletCATCreateSimple.tsx:38
+msgid "Please wait for wallet synchronization"
+msgstr "Дождитесь окончания синхронизации кошелька"
+
+#: src/constants/WalletName.ts:32
+msgid "Pooling Wallet"
+msgstr ""
+
+#: src/components/WalletConnections.tsx:28
+msgid "Port"
+msgstr "Порт"
+
+#: src/components/create/WalletCreateList.tsx:45
+msgid "Rate Limited"
+msgstr "Ограниченной Скорости"
+
+#: src/components/WalletsSidebar.tsx:133
+#~ msgid "Read the blog post for details"
+#~ msgstr "Прочитать запись блога подробнее"
+
+#: src/components/WalletHeader.tsx:51
+msgid "Receive"
+msgstr "Получить"
+
+#: src/components/WalletReceiveAddress.tsx:29
+msgid "Receive Address"
+msgstr "Адрес для получения платежа"
+
+#: src/components/cat/WalletCATSend.tsx:122
+msgid "Recipient address is not a coloured wallet address. Please enter a coloured wallet address"
+msgstr "Адрес получателя не является адресом цветного кошелька. Пожалуйста, введите адрес цветного кошелька"
+
+#: src/components/standard/nftRecover/NFTRecover.tsx:203
+msgid "Recover"
+msgstr ""
+
+#: src/constants/WalletName.ts:26
+msgid "Recoverable Wallet"
+msgstr "Восстановляемый кошелек"
+
+#: src/components/standard/nftRecover/NFTRecover.tsx:105
+msgid "Recovered Amount"
+msgstr ""
+
+#: src/components/standard/nftRecover/NFTRecover.tsx:105
+#~ msgid "Recovered Amount:"
+#~ msgstr ""
+
+#: src/components/cat/WalletCATSelect.tsx:39
+msgid "Recovery Wallet"
+msgstr "Кошелек восстановления"
+
+#: src/components/cat/WalletCAT.tsx:87
+#: src/components/WalletRenameDialog.tsx:61
+msgid "Rename Wallet"
+msgstr "Переименовать кошелек"
+
+#: src/components/WalletHistory.tsx:205
+msgid "Retire"
+msgstr ""
+
+#: src/constants/WalletName.ts:8
+msgid "RL Wallet"
+msgstr ""
+
+#: src/components/WalletRenameDialog.tsx:75
+msgid "Save"
+msgstr "Сохранить"
+
+#: src/components/cat/WalletCATTAILDialog.tsx:59
+#: src/components/WalletTokenCard.tsx:177
+msgid "Search on Tail Database"
+msgstr "Искать в Tail Database"
+
+#: src/components/create/WalletCreateList.tsx:25
+msgid "Select Wallet Type"
+msgstr "Выберите Тип Кошелька"
+
+#: src/components/cat/WalletCATSend.tsx:256
+#: src/components/WalletHeader.tsx:50
+#: src/components/WalletSend.tsx:400
+msgid "Send"
+msgstr "Отправить"
+
+#: src/components/cat/WalletCAT.tsx:96
+msgid "Show Asset Id"
+msgstr "Показать ID актива"
+
+#: src/components/card/WalletCardSpendableBalance.tsx:41
+msgid "Spendable Balance"
+msgstr "Доступный баланс"
+
+#: src/components/cat/WalletCATSelect.tsx:25
+#: src/components/create/WalletCreateList.tsx:32
+#: src/constants/WalletName.ts:23
+msgid "SSDCoin Asset Token"
+msgstr "Токен активов SSDCoin"
+
+#: src/components/standard/staking/WalletStakingSend.tsx:123
+#: src/components/WalletHeader.tsx:53
+msgid "Staking"
+msgstr ""
+
+#: src/components/standard/staking/WalletStaking.tsx:68
+msgid "Staking Address"
+msgstr ""
+
+#: src/components/standard/staking/WalletStakingSend.tsx:109
+msgid "Staking Amount"
+msgstr ""
+
+#: src/components/standard/staking/WalletStaking.tsx:53
+msgid "Staking Balance"
+msgstr ""
+
+#: src/components/standard/staking/WalletStakingSend.tsx:98
+msgid "Staking will make farming SSD easier."
+msgstr ""
+
+#: src/constants/WalletName.ts:5
+msgid "Standard Wallet"
+msgstr "Стандартный кошелек"
+
+#: src/components/standard/nftRecover/NFTRecover.tsx:106
+#: src/components/WalletHistory.tsx:211
+msgid "Status"
+msgstr ""
+
+#: src/components/standard/nftRecover/NFTRecover.tsx:106
+#~ msgid "Status:"
+#~ msgstr ""
+
+#: src/components/standard/nftRecover/NFTRecover.tsx:107
+#: src/components/WalletSendTransactionResultDialog.tsx:12
+msgid "Success"
+msgstr "Успешно"
+
+#: src/components/standard/nftRecover/NFTRecover.tsx:107
+#~ msgid "SUCCESS"
+#~ msgstr ""
+
+#: src/components/WalletHeader.tsx:49
+msgid "Summary"
+msgstr "Сводка"
+
+#: src/components/WalletStatus.tsx:70
+msgid "Synced"
+msgstr "Синхронизован"
+
+#: src/components/WalletStatus.tsx:82
+msgid "Syncing"
+msgstr "Синхронизация"
+
+#: src/components/card/WalletCardTotalBalance.tsx:70
+msgid "The derivation index sets the range of wallet addresses that the wallet scans the blockchain for. This number is generally higher if you have a lot of transactions or canceled offers for SSD, CATs, or NFTs. If you believe your balance is incorrect because it’s missing coins, then increasing the derivation index could help the wallet include the missing coins in the balance total."
+msgstr ""
+
+#: src/components/WalletSendTransactionResultDialog.tsx:34
+msgid "The transaction could not be immediately included in the mempool because the specified fee is too low. The transaction will be retried periodically, and may be included in the mempool once fees are lower, or if space becomes available."
+msgstr "Транзакция не может быть сразу включена в мемпул, так как указанная комиссия слишком мала. Транзакция будет периодически повторяться и может быть включена в мемпул, как только комиссия снизится или освободится место."
+
+#: src/components/WalletBadge.tsx:26
+msgid "This access token is verified"
+msgstr "Этот токен доступа проверен"
+
+#: src/components/WalletHistory.tsx:172
+msgid "This is not a valid address for sending funds to"
+msgstr "Этот адрес невалидный для отправки на него средств"
+
+#: src/components/standard/WalletStandardCards.tsx:23
+msgid "This is the amount of SSDCoin that you can currently use to make transactions. It does not include pending farming rewards, pending incoming transactions, and SSDCoin that you have just spent but is not yet in the blockchain."
+msgstr "Это количество монет Чиа, которое в настоящее время вы можете использовать для совершения транзакций. Баланс не включает ожидающие вознаграждения за фармиг, ожидающие входящие транзакции и монеты, которые вы только что потратили, но они еще не попали в блокчейн."
+
+#: src/components/standard/WalletStandardCards.tsx:42
+msgid "This is the pending change, which are change coins which you have sent to yourself, but have not been confirmed yet."
+msgstr "Здесь рассчитан размер ожидаемой сдачи, которая осталась в качестве размена после отправки монет. Размен вы отправили себе, но транзакция еще не была подтверждена."
+
+#: src/components/standard/WalletStandardCards.tsx:36
+msgid "This is the sum of the incoming and outgoing pending transactions (not yet included into the blockchain). This does not include farming rewards."
+msgstr "Здесь рассчитана сумма входящих и исходящих ожидающих транзакций (еще не включенных в цепь блоков). Награды за фарминг не включены в сумму."
+
+#: src/components/standard/WalletStandardCards.tsx:17
+msgid "This is the total amount of ssdcoin in the blockchain at the current peak block that is controlled by your private keys. It includes frozen farming rewards, but not pending incoming and outgoing transactions."
+msgstr "Это общее количество монет чиа в блокчейне в текущем пиковом блоке, который контролируется вашими закрытыми ключами. Он включает в себя замороженные вознаграждения за фарминг, но не ожидающие входящие и исходящие транзакции."
+
+#: src/components/standard/WalletStandardCards.tsx:30
+msgid "This is the total balance + pending balance: it is what your balance will be after all pending transactions are confirmed."
+msgstr "Это общий баланс + отложенный баланс: это то, каким будет ваш баланс после подтверждения всех ожидающих транзакций."
+
+#: src/components/ClawbackClaimTransactionDialog.tsx:194
+msgid "This transaction will be automatically claimed with a fee:"
+msgstr ""
+
+#: src/components/WalletHistory.tsx:181
+#~ msgid "To"
+#~ msgstr "Кому"
+
+#: src/components/ClawbackClaimTransactionDialog.tsx:176
+#: src/components/WalletHistory.tsx:165
+msgid "To:"
+msgstr ""
+
+#: src/components/cat/WalletCATCreateSimple.tsx:46
+msgid "Token has empty asset id"
+msgstr "Токен имеет пустой id актива"
+
+#: src/components/cat/WalletCATCreateSimple.tsx:42
+msgid "Token has empty name"
+msgstr "Токен имеет пустое имя"
+
+#: src/components/WalletsSidebar.tsx:92
+msgid "Tokens"
+msgstr "Токены"
+
+#: src/components/card/WalletCardTotalBalance.tsx:60
+#: src/components/standard/nftRecover/NFTRecover.tsx:169
+#: src/components/standard/nftRecover/NFTRecover.tsx:170
+msgid "Total Balance"
+msgstr "Итоговый баланс"
+
+#: src/components/WalletSendTransactionResultDialog.tsx:27
+msgid "Transaction has successfully been sent to a full node and included in the mempool."
+msgstr "Транзакция успешно отправлена на полный узел и включена в мемпул."
+
+#: src/components/WalletHistory.tsx:477
+msgid "Transactions"
+msgstr "Транзакции"
+
+#: src/components/ClawbackClaimTransactionDialog.tsx:233
+msgid "Transactions will be claimed automatically when the Clawback time expires."
+msgstr ""
+
+#: src/components/ClawbackClaimTransactionDialog.tsx:236
+msgid "Transactions with values smaller than the fee will not be auto claimed."
+msgstr ""
+
+#: src/components/standard/nftRecover/NFTRecover.tsx:119
+msgid "visiting the Pool tab of your CHIA-GUI. using this command: chia plotNFT show. Note: you have to do this on the CHIA client, not the fork!"
+msgstr ""
+
+#: src/components/Wallet.tsx:22
+msgid "Wallet {walletId} not found"
+msgstr "Кошелек {walletId} не найден"
+
+#: src/components/WalletConnections.tsx:67
+msgid "Wallet Connections"
+msgstr "Соединения с кошельком"
+
+#: src/components/cat/WalletCAT.tsx:66
+msgid "Wallet does not exists"
+msgstr "Кошелек не существует"
+
+#: src/components/WalletAdd.tsx:99
+#: src/components/WalletImport.tsx:147
+msgid "Wallet Name"
+msgstr "Название кошелька"
+
+#: src/components/ClawbackClaimTransactionDialog.tsx:201
+msgid "Wallet needs to be synced for claiming clawback transactions"
+msgstr ""
+
+#: src/components/Wallet.tsx:37
+msgid "Wallet with type {0} not supported"
+msgstr "Кошелек с типом {0} не поддерживается"
+
+#: src/components/WalletsSidebar.tsx:138
+#~ msgid "Want to see your old balance for yourself?"
+#~ msgstr "Хотите увидеть свой старый баланс для себя?"
+
+#: src/components/WalletsSidebar.tsx:110
+#~ msgid "We've made an upgrade to the CAT standard which requires all CATs to be re-issued. You will be airdropped your new tokens as they are re-issued by the original issuers. The airdropped tokens will be based on the balance as of block height:<0/><1/><2/>(Approximate time: July 26th, 2022 @ 17:00 UTC)"
+#~ msgstr ""
+
+#: src/components/WalletAdd.tsx:65
+msgid "Welcome! The following words are used for your wallet backup. Without them, you will lose access to your wallet, keep them safe! Write down each word along with the order number next to them. (Order is important)"
+msgstr "Добро пожаловать! Перечисленные слова используются для резервного копирования вашего кошелька. Без них вы потеряете доступ к своему кошельку, берегите их! Запишите каждое слово вместе с порядковым номером рядом с ним. (Порядок важен)"
+
+#: src/components/WalletHistoryClawbackChip.tsx:56
+msgid "Will be autoclaimed in "
+msgstr ""
+
+#: src/components/standard/staking/WalletStakingWithdraw.tsx:123
+msgid "Withdraw"
+msgstr ""
+
+#: src/components/standard/staking/WalletStakingWithdraw.tsx:109
+msgid "Withdraw Amount"
+msgstr ""
+
+#: src/components/standard/staking/WalletStakingWithdraw.tsx:95
+msgid "Withdraw Staking"
+msgstr ""
+
+#: src/components/standard/staking/WalletStakingWithdraw.tsx:98
+msgid "Withdraw staking. withdraw amount 0 will withdraw all staking"
+msgstr ""
+
+#: src/components/ClawbackClaimTransactionDialog.tsx:239
+msgid "You can change the Clawback Auto Claim fee in Settings."
+msgstr ""
+
+#: src/components/standard/nftRecover/NFTRecover.tsx:186
+msgid "You can only claim rewards older than 7 days"
+msgstr ""
+
+#: src/components/WalletsSidebar.tsx:106
+#~ msgid "Your CAT tokens have been upgraded!"
+#~ msgstr ""
+
+#: src/components/WalletImport.tsx:73
+msgid "Your pasted list does not include {mnemonicWordCount} valid mnemonic words."
+msgstr ""
