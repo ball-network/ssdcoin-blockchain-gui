@@ -140,7 +140,7 @@ export default function SettingsIntegration() {
           </SettingsSection>
           <SettingsText>
             <Trans>
-              WalletConnect enables a decentralized app on the SSDCoin  blockchain to communicate and make requests directly
+              WalletConnect enables a decentralized app on the SSDCoin blockchain to communicate and make requests directly
               to a SSDCoin wallet.
             </Trans>
           </SettingsText>

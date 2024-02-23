@@ -13,7 +13,7 @@ import {
   calculateBaseFarmerReward,
   useCurrencyCode,
   mojoToSSDCoin,
-  Suspender,
+  Loading,
 } from '@ssdcoin-network/core';
 import { Trans } from '@lingui/macro';
 import { Alert, Paper, TableRow, Table, TableBody, TableCell, TableContainer } from '@mui/material';
@@ -22,11 +22,12 @@ import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 
 import { hexToArray, arrToHex, sha256 } from '../../util/utils';
+
 import BlockTitle from './BlockTitle';
 
 async function computeNewPlotId(block) {
   const { poolPublicKey, plotPublicKey } = block.rewardChainBlock.proofOfSpace;
-  if (!poolPublicKey) {
+  if (!poolPublicKey || !plotPublicKey) {
     return undefined;
   }
   let buf = hexToArray(poolPublicKey);
@@ -109,7 +110,7 @@ export default function Block() {
   }
 
   if (isLoading) {
-    return <Suspender />;
+    return <Loading center />;
   }
 
   if (error) {
@@ -247,7 +248,7 @@ export default function Block() {
       <Card
         title={
           <Back variant="h5">
-            <Trans>Block at height {blockRecord.height} in the SSDCoin  blockchain</Trans>
+            <Trans>Block at height {blockRecord.height} in the SSDCoin blockchain</Trans>
           </Back>
         }
         action={

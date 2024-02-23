@@ -39,6 +39,7 @@ import styled from 'styled-components';
 
 import useWallet from '../hooks/useWallet';
 import useWalletTransactions from '../hooks/useWalletTransactions';
+
 import ClawbackClaimTransactionDialog from './ClawbackClaimTransactionDialog';
 import WalletHistoryClawbackChip from './WalletHistoryClawbackChip';
 import WalletHistoryPending from './WalletHistoryPending';
@@ -50,7 +51,12 @@ function getIsIncomingClawbackTransaction(transactionRow: Transaction) {
 }
 
 function getIsOutgoingTransaction(transactionRow: Transaction) {
-  return [TransactionType.OUTGOING, TransactionType.OUTGOING_TRADE, TransactionType.INCOMING_CLAWBACK_SEND].includes(
+  return [
+    TransactionType.OUTGOING,
+    TransactionType.OUTGOING_TRADE,
+    TransactionType.INCOMING_CLAWBACK_SEND,
+    TransactionType.OUTGOING_STAKE_FARM,
+  ].includes(
     transactionRow.type
   );
 }
@@ -118,7 +124,9 @@ const getCols = (type: WalletType, isSyncing, getOfferRecord, navigate, location
           </Box>
           &nbsp;
           <strong>
-            <FormatLargeNumber value={type === WalletType.CAT ? mojoToCAT(row.amount) : mojoToSSDCoin(row.amount)} />
+            <FormatLargeNumber
+              value={[WalletType.CAT, WalletType.CRCAT].includes(type) ? mojoToCAT(row.amount) : mojoToSSDCoin(row.amount)}
+            />
           </strong>
           &nbsp;
           {metadata.unit}
@@ -276,9 +284,15 @@ export default function WalletHistory(props: Props) {
     // confirmed: true,
     typeFilter: {
       mode: TransactionTypeFilterMode.EXCLUDE,
-      values: [TransactionType.INCOMING_CLAWBACK_RECEIVE, TransactionType.INCOMING_CLAWBACK_SEND],
+      values: [
+        TransactionType.INCOMING_CLAWBACK_RECEIVE,
+        TransactionType.INCOMING_CLAWBACK_SEND,
+        TransactionType.INCOMING_STAKE_FARM_RECEIVE,
+        TransactionType.STAKE_FARM_WITHDRAW,
+      ],
     },
   });
+  // console.log(transactions);
 
   const feeUnit = useCurrencyCode();
   const [getOfferRecord] = useGetOfferRecordMutation();

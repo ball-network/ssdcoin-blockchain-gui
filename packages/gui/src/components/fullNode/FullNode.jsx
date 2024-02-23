@@ -1,5 +1,5 @@
 import { useGetLatestBlocksQuery, useGetUnfinishedBlockHeadersQuery } from '@ssdcoin-network/api-react';
-import { FormatLargeNumber, Flex, Card, StateColor, Table, LayoutDashboardSub } from '@ssdcoin-network/core';
+import { FormatLargeNumber, Flex, Card, StateColor, Table, LayoutDashboardSub, Link } from '@ssdcoin-network/core';
 import { Status } from '@ssdcoin-network/icons';
 import { Trans } from '@lingui/macro';
 import { Box, Tooltip, Typography } from '@mui/material';
@@ -102,13 +102,21 @@ function BlocksCard() {
   }
 
   return (
-    <Card title={<Trans>Blocks</Trans>} titleVariant="h6" action={<FullNodeBlockSearch />} transparent>
+    <Card title={
+      <Flex gap={1}>
+        <Trans>Blocks</Trans>
+          <Link href="https://chiax.cc/ssd/" target="_blank" data-testid="BlockExplorer">
+            <Trans>Blockchain Explorer</Trans>
+          </Link>
+      </Flex>
+    } titleVariant="h6" action={<FullNodeBlockSearch />} transparent>
       <Table cols={cols} rows={rows} onRowClick={handleRowClick} isLoading={isLoading} />
     </Card>
   );
 }
 
 export default function FullNode() {
+
   return (
     <LayoutDashboardSub>
       <Flex flexDirection="column" gap={2}>

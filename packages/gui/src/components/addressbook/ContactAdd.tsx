@@ -66,6 +66,64 @@ function AddressFields() {
   );
 }
 
+function StakeAddressFields() {
+  const { control } = useFormContext();
+  const { fields, append, remove } = useFieldArray({
+    control,
+    name: 'stakeAddresses',
+  });
+
+  const handleAppend = (value) => {
+    append(value);
+  };
+
+  const handleRemove = (index) => {
+    remove(index);
+  };
+
+  return (
+    <>
+      <Box display="flex" alignItems="center" justifyContent="space-between">
+        <Typography variant="h6">
+          <Trans>Stake Addresses</Trans>
+        </Typography>
+        <IconButton onClick={() => handleAppend({ name: '', address: '' })}>
+          <Add />
+        </IconButton>
+      </Box>
+      {fields.map((item, index) => (
+        <Box key={item.id} display="flex" alignItems="center" justifyContent="space-between" gap={2}>
+          <TextField
+            render={({ field }) => <input {...field} />}
+            defaultValue={item.name}
+            name={`stakeAddresses[${index}].name`}
+            control={control}
+            variant="filled"
+            color="secondary"
+            fullWidth
+            disabled={false}
+            label={<Trans>Name</Trans>}
+          />
+          <TextField
+            render={({ field }) => <input {...field} />}
+            defaultValue={item.address}
+            name={`stakeAddresses[${index}].address`}
+            control={control}
+            variant="filled"
+            color="secondary"
+            fullWidth
+            disabled={false}
+            label={<Trans>Stake Addresses</Trans>}
+          />
+          <IconButton onClick={() => handleRemove(index)}>
+            <Remove />
+          </IconButton>
+        </Box>
+      ))}
+    </>
+  );
+}
+
 function ProfileFields() {
   const { control } = useFormContext();
   const { fields, append, remove } = useFieldArray({
@@ -195,6 +253,7 @@ export default function ContactAdd() {
     defaultValues: {
       name: '',
       addresses: [{ name: '', address: '' }],
+      stakeAddresses: [{ name: '', address: '' }],
       dids: [],
       domains: [],
       notes: '',
@@ -209,9 +268,10 @@ export default function ContactAdd() {
   function handleSubmit(data) {
     if (data.addresses.name === 0) throw new Error('A name must be provided to create a contact');
     const filteredAddresses = data.addresses.filter((item) => item.name.length > 0 || item.address.length > 0);
+    const filteredStakeAddresses = data.stakeAddresses.filter((item) => item.name.length > 0 || item.address.length > 0);
     const filteredProfiles = data.dids.filter((item) => item.name.length > 0 || item.did.length > 0);
     const filteredDomains = data.domains.filter((item) => item.name.length > 0 || item.domainName.length > 0);
-    if (filteredAddresses.length === 0) throw new Error('At least one Address must be provided to create contact');
+    if (filteredAddresses.length === 0 && filteredStakeAddresses.length === 0) throw new Error('At least one Address must be provided to create contact');
     filteredAddresses.forEach((entry) => {
       try {
         if (entry.address[3] === '1') {
@@ -240,6 +300,28 @@ export default function ContactAdd() {
         });
       });
     });
+    filteredStakeAddresses.forEach((entry) => {
+      try {
+        if (entry.address[9] === '1') {
+          if (entry.address.slice(0, 9).toLowerCase() !== 'dpos:ssd:') {
+            throw new Error();
+          } else if (fromBech32m(entry.address).length !== 64) {
+            throw new Error();
+          }
+        } else {
+          throw new Error();
+        }
+      } catch (err) {
+        throw new Error(`${entry.address} is not a valid stake address`);
+      }
+      addressBook.forEach((contact) => {
+        contact.stakeAddresses.forEach((contactAddress) => {
+          if (contactAddress.address === entry.address) {
+            throw new Error(`The stake address ${entry.address} is already assigned to an existing contact: ${contact.name}`);
+          }
+        });
+      });
+    });
     filteredProfiles.forEach((entry) => {
       try {
         if (entry.did.slice(0, 8).toLowerCase() !== 'did:ssd:') {
@@ -258,7 +340,7 @@ export default function ContactAdd() {
         });
       });
     });
-    addContact(data.name, filteredAddresses, filteredProfiles, data.notes, data.nftId, filteredDomains, chosenEmoji);
+    addContact(data.name, filteredAddresses, filteredStakeAddresses, filteredProfiles, data.notes, data.nftId, filteredDomains, chosenEmoji);
     navigate(`/dashboard/addressbook/`);
   }
 
@@ -356,6 +438,9 @@ export default function ContactAdd() {
             <AddressFields />
           </Flex>
           <Flex gap={2} flexDirection="column">
+            <StakeAddressFields />
+          </Flex>
+          <Flex gap={2} flexDirection="column">
             <ProfileFields />
           </Flex>
           <Flex gap={2} flexDirection="column">
@@ -370,6 +455,7 @@ export default function ContactAdd() {
 type ContactAddData = {
   name: string;
   addresses: [];
+  stakeAddresses: [];
   dids: [];
   domains: [];
   notes: string;

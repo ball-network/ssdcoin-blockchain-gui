@@ -35,6 +35,7 @@ export type {
   OfferSummaryCATInfo,
   OfferSummaryInfos,
   OfferSummaryNFTInfo,
+  OfferSummaryValidTimes,
 } from './OfferSummaryRecord';
 export type { default as OfferTradeRecord } from './OfferTradeRecord';
 export type { default as Peak } from './Peak';
@@ -69,3 +70,5 @@ export type { default as UnconfirmedPlotNFT } from './UnconfirmedPlotNFT';
 export type { default as Wallet } from './Wallet';
 export type { default as WalletBalance } from './WalletBalance';
 export type { default as WalletCreate, WalletCreatePool } from './WalletCreate';
+export type { default as AutoWithdrawStake } from './AutoWithdrawStake';
+export type { default as StakeValue } from './StakeValue';

@@ -11,8 +11,6 @@ export const {
 
   useCloseMutation,
   useGetStateQuery,
-  useClientStartServiceMutation,
-  useClientStopServiceMutation,
 } = client;
 
 // daemon hooks
@@ -42,6 +40,7 @@ export const {
   useGetWalletAddressesQuery,
   useSetLabelMutation,
   useDeleteLabelMutation,
+  useGetPublicKeyQuery,
 } = daemon;
 
 // farmer hooks
@@ -154,6 +153,7 @@ export const {
   useSpendCATMutation,
   useAddCATTokenMutation,
   useGetStrayCatsQuery,
+  useCrCatApprovePendingMutation,
 
   // PlotNFTs
   useGetPlotNFTsQuery,
@@ -211,10 +211,15 @@ export const {
   useGetAutoClaimQuery,
   useSpendClawbackCoinsMutation,
 
-  // staking
-  useStakingInfoQuery,
-  useStakingSendMutation,
-  useStakingWithdrawMutation,
+  // stake Old
+  useStakeInfoOldQuery,
+  useStakeWithdrawOldMutation,
+
+  // stake
+  useSetAutoWithdrawStakeMutation,
+  useGetAutoWithdrawStakeQuery,
+  useStakeInfoQuery,
+  useStakeSendMutation,
 
   useFindPoolNFTMutation,
   useRecoverPoolNFTMutation,

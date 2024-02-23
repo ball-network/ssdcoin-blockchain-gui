@@ -15,6 +15,7 @@ import SelectKeyRenameForm from '../../screens/SelectKey/SelectKeyRenameForm';
 import Flex from '../Flex';
 import Link from '../Link';
 import Loading from '../Loading';
+
 import NewerAppVersionAvailable from './NewerAppVersionAvailable';
 
 // import LayoutFooter from '../LayoutMain/LayoutFooter';
@@ -217,7 +218,7 @@ export default function LayoutDashboard(props: LayoutDashboardProps) {
                               lineHeight: '67px',
                               textAlign: 'center',
                               borderRadius: '5px',
-                              ':hover': {
+                              '&:hover': {
                                 cursor: 'pointer',
                                 backgroundColor: theme.palette.colors[walletKeyTheme.color].main,
                               },

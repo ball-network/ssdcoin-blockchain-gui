@@ -29,6 +29,7 @@ export default function PlotAddChooseSize(props: Props) {
 
   const plotterName = watch('plotterName');
   const plotSize = watch('plotSize');
+  const hybridDiskMode = watch('bladebitEnableHybridDiskMode', false);
   const overrideK = watch('overrideK');
   const compressionLevelStr = watch('bladebitCompressionLevel');
   const compressionLevel = compressionLevelStr ? +compressionLevelStr : undefined;
@@ -36,7 +37,9 @@ export default function PlotAddChooseSize(props: Props) {
 
   const compressionAvailable =
     op.haveBladebitCompressionLevel &&
-    (plotterName === PlotterName.BLADEBIT_CUDA || plotterName === PlotterName.BLADEBIT_RAM);
+    (plotterName === PlotterName.BLADEBIT_CUDA || plotterName === PlotterName.BLADEBIT_RAM) &&
+    plotter.version &&
+    +plotter.version.split('.')[0] >= 3;
 
   const [allowedPlotSizes, setAllowedPlotSizes] = useState(
     getPlotSizeOptions(plotterName, compressionLevel).filter((option) => plotter.options.kSizes.includes(option.value))
@@ -78,6 +81,8 @@ export default function PlotAddChooseSize(props: Props) {
     }
   }, [plotSize, overrideK, setValue, openDialog]);
 
+  const showC0 = !hybridDiskMode || plotterName !== PlotterName.BLADEBIT_CUDA;
+
   return (
     <CardStep
       step={step}
@@ -88,7 +93,7 @@ export default function PlotAddChooseSize(props: Props) {
           {
             'You do not need to be synced or connected to plot. Temporary files are created during the plotting process which exceed the size of the final plot files. Make sure you have enough space. '
           }
-          <Link target="_blank" href="https://github.com/ball-network/ssdcoin-blockchain/wiki/k-sizes">
+          <Link target="_blank" href="https://github.com/Chia-Network/chia-blockchain/wiki/k-sizes">
             Learn more
           </Link>
         </Trans>
@@ -121,7 +126,10 @@ export default function PlotAddChooseSize(props: Props) {
                 <Trans>Compression level</Trans>
               </InputLabel>
               <Select name="bladebitCompressionLevel" defaultValue={plotter.defaults.bladebitCompressionLevel}>
-                <MenuItem value={0}>0 - No compression</MenuItem>
+                {
+                  /* Bladebit cuda_plot with hybridDiskMode option currently doesn't support compression level 0 */
+                  showC0 && <MenuItem value={0}>0 - No compression</MenuItem>
+                }
                 <MenuItem value={1}>1</MenuItem>
                 <MenuItem value={2}>2</MenuItem>
                 <MenuItem value={3}>3</MenuItem>

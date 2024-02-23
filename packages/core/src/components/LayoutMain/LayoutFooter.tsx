@@ -21,7 +21,7 @@ const SendFeedback = styled.a`
 async function openFAQURL(): Promise<void> {
   try {
     const { shell } = window as any;
-    await shell.openExternal('https://github.com/ball-network/ssdcoin-blockchain/wiki/FAQ');
+    await shell.openExternal('https://github.com/Chia-Network/chia-blockchain/wiki/FAQ');
   } catch (e) {
     console.error(e);
   }

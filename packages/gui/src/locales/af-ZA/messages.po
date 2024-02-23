@@ -187,8 +187,8 @@ msgid "Block VDF Iterations"
 msgstr "Block VDF Iterasies"
 
 #: src/components/block/Block.jsx:311
-msgid "Block at height {0} in the SSDCoin  blockchain"
-msgstr "Blok is op hoogte {0} in die SSDCoin  blockchain"
+msgid "Block at height {0} in the SSDCoin blockchain"
+msgstr "Blok is op hoogte {0} in die SSDCoin blockchain"
 
 #: src/components/fullNode/FullNode.jsx:331
 #~ msgid "Block hash"
@@ -1584,8 +1584,8 @@ msgstr ""
 #~ msgstr "Sub Block Height"
 
 #: src/components/block/Block.jsx:338
-#~ msgid "Sub Block at height {0} in the SSDCoin  blockchain"
-#~ msgstr "Sub Block at height {0} in the SSDCoin  blockchain"
+#~ msgid "Sub Block at height {0} in the SSDCoin blockchain"
+#~ msgstr "Sub Block at height {0} in the SSDCoin blockchain"
 
 #: src/components/wallet/rateLimited/WalletRateLimited.jsx:357
 msgid "Submit"

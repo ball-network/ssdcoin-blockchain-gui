@@ -5,6 +5,7 @@ import { useGetOfferDataMutation } from '@ssdcoin-network/api-react';
 import { useShowSaveDialog } from '@ssdcoin-network/core';
 
 import { suggestedFilenameForOffer } from '../components/offers/utils';
+
 import useAssetIdName from './useAssetIdName';
 
 export type SaveOfferFileHook = (tradeId: string) => Promise<void>;

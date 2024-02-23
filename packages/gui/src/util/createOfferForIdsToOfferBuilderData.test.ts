@@ -2,6 +2,7 @@ import * as ssdcoinCore from '@ssdcoin-network/core';
 import BigNumber from 'bignumber.js';
 
 import { AssetIdMapEntry } from '../hooks/useAssetIdName';
+
 import createOfferForIdsToOfferBuilderData from './createOfferForIdsToOfferBuilderData';
 
 jest.mock('@ssdcoin-network/core', () => ({

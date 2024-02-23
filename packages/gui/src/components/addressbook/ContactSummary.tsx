@@ -90,6 +90,34 @@ export default function ContactSummary() {
     );
   }
 
+  function showStakeAddresses() {
+    if (!contact.stakeAddresses || contact.stakeAddresses.length === 0) {
+      return null;
+    }
+    return (
+      <Flex flexDirection="column" gap={3} flexGrow={1}>
+        <Typography variant="h6"><Trans>Stake Addresses</Trans></Typography>
+        <Flex flexDirection="column" gap={3} flexGrow={1}>
+          {contact.stakeAddresses.map((addressInfo) => (
+            <TextField
+              label={addressInfo.name}
+              value={addressInfo.address}
+              fullWidth
+              InputProps={{
+                readOnly: true,
+                endAdornment: (
+                  <InputAdornment position="end">
+                    <CopyToClipboard value={addressInfo.address} />
+                  </InputAdornment>
+                ),
+              }}
+            />
+          ))}
+        </Flex>
+      </Flex>
+    );
+  }
+
   function showDIDs() {
     if (!contact.dids || contact.dids.length === 0) {
       return null;
@@ -191,6 +219,7 @@ export default function ContactSummary() {
           */}
           <Flex flexDirection="column" gap={6} style={{ width: '100%' }}>
             {showAddresses()}
+            {showStakeAddresses()}
             {showDIDs()}
             {showDomains()}
           </Flex>

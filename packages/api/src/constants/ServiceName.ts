@@ -5,7 +5,7 @@ const ServiceName = {
   HARVESTER: 'ssdcoin_harvester',
   SIMULATOR: 'ssdcoin_full_node_simulator',
   DAEMON: 'daemon',
-  PLOTTER: 'chia_plotter',
+  PLOTTER: 'ssdcoin_plotter',
   TIMELORD: 'ssdcoin_timelord',
   INTRODUCER: 'ssdcoin_introducer',
   EVENTS: 'wallet_ui',

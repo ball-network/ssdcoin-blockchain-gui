@@ -10,8 +10,9 @@ import WalletHeader from '../WalletHeader';
 import WalletHistory from '../WalletHistory';
 import WalletReceiveAddress from '../WalletReceiveAddress';
 import WalletSend from '../WalletSend';
-import WalletStaking from "./staking/WalletStaking";
-import NFTRecover from "./nftRecover/NFTRecover";
+import NFTRecover from "../nftRecover/NFTRecover";
+import StakeCategoryFarm from "../stake/StakeCategoryFarm";
+
 import WalletStandardCards from './WalletStandardCards';
 
 type StandardWalletProps = {
@@ -26,7 +27,7 @@ export default function StandardWallet(props: StandardWalletProps) {
   const [searchParams, setSearchParams] = useSearchParams();
   const selectedTab = searchParams.get('selectedTab') || 'summary';
 
-  const setSelectedTab = (tab: 'summary' | 'send' | 'receive' | 'staking' | 'nftRecover') => {
+  const setSelectedTab = (tab: 'summary' | 'send' | 'receive'  | 'stakeFarm' | 'nftRecover') => {
     setSearchParams({ selectedTab: tab });
   };
 
@@ -39,12 +40,22 @@ export default function StandardWallet(props: StandardWalletProps) {
     });
   }
 
+  function handleStakeOld() {
+    navigate('/dashboard/wallets/stakeOld', {
+      state: {
+        walletId,
+        referrerPath: window.location.hash.split('#').slice(-1)[0],
+      },
+    });
+  }
+
   return (
     <Flex flexDirection="column" gap={2.5}>
       <WalletHeader
         walletId={walletId}
         tab={selectedTab}
         onTabChange={setSelectedTab}
+        onStakeOld={handleStakeOld}
         actions={
           <MenuItem onClick={handleCreateOffer} close>
             <ListItemIcon>
@@ -67,8 +78,8 @@ export default function StandardWallet(props: StandardWalletProps) {
               return <WalletSend walletId={walletId} />;
             case 'receive':
               return <WalletReceiveAddress walletId={walletId} />;
-            case 'staking':
-              return <WalletStaking walletId={walletId} />;
+            case 'stakeFarm':
+              return <StakeCategoryFarm walletId={walletId} />;
             case 'nftRecover':
               return <NFTRecover walletId={walletId} />;
             default:

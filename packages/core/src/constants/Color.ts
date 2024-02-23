@@ -217,7 +217,7 @@ const Color = {
     '800': '#2B3A2B',
     '900': '#243024',
   },
-  Sea: {
+  SSDCoin: {
     '50': '#F5F8F7',
     '100': '#DDEAE7',
     '200': '#BBD4D0',
@@ -253,7 +253,7 @@ const Color = {
     '800': '#1E353B',
     '900': '#0F252A',
   },
-  Sea: {
+  SSDCoin: {
     Primary: '#5ECE71',
     Secondary: {
       '100': '#FFFAE3',

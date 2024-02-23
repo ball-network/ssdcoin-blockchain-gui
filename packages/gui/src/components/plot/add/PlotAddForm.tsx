@@ -12,12 +12,14 @@ import { plottingInfo } from '../../../constants/plotSizes';
 import useUnconfirmedPlotNFTs from '../../../hooks/useUnconfirmedPlotNFTs';
 import PlotAddConfig from '../../../types/PlotAdd';
 import { PlotterDefaults, PlotterOptions } from '../../../types/Plotter';
+
 import PlotAddChooseKeys from './PlotAddChooseKeys';
 import PlotAddChoosePlotter from './PlotAddChoosePlotter';
 import PlotAddChooseSize from './PlotAddChooseSize';
 import PlotAddNFT from './PlotAddNFT';
 import PlotAddNumberOfPlots from './PlotAddNumberOfPlots';
 import PlotAddSelectFinalDirectory from './PlotAddSelectFinalDirectory';
+import PlotAddSelectHybridDiskMode from './PlotAddSelectHybridDiskMode';
 
 type FormData = PlotAddConfig & {
   p2SingletonPuzzleHash?: string;
@@ -75,13 +77,28 @@ export default function PlotAddForm(props: Props) {
 
   const defaultsForPlotter = (plotterName: PlotterName) => {
     const plotterDefaults = plotters[plotterName]?.defaults ?? defaultPlotter.defaults;
+    const selectedPlotterName = plotterDefaults.plotterName as PlotterName;
     const { plotSize } = plotterDefaults;
-    const maxRam = plottingInfo[plotterName].find((element) => element.value === plotSize)?.defaultRam;
+    const maxRam = plottingInfo[selectedPlotterName].find((element) => element.value === plotSize)?.defaultRam;
     const defaults = {
       ...plotterDefaults,
       ...otherDefaults,
       maxRam,
     };
+
+    if (
+      selectedPlotterName === PlotterName.BLADEBIT_RAM ||
+      selectedPlotterName === PlotterName.BLADEBIT_DISK ||
+      selectedPlotterName === PlotterName.BLADEBIT_CUDA
+    ) {
+      const plotter = plotters[selectedPlotterName];
+      // Only Bladebit >= 3.0.0 does support plot compression
+      if (plotter && plotter.version && +plotter.version.split('.')[0] >= 3) {
+        defaults.bladebitCompressionLevel = plotterName === PlotterName.BLADEBIT_CUDA ? 1 : 0;
+      } else {
+        defaults.bladebitCompressionLevel = undefined;
+      }
+    }
 
     return defaults;
   };
@@ -127,6 +144,7 @@ export default function PlotAddForm(props: Props) {
         plotterName: formPlotterName,
         workspaceLocation,
         workspaceLocation2,
+        bladebitEnableHybridDiskMode,
         useManualKeySetup,
         farmerPublicKey,
         poolPublicKey,
@@ -167,12 +185,18 @@ export default function PlotAddForm(props: Props) {
         selectedP2SingletonPuzzleHash = p2SingletonPuzzleHashLocal;
       }
 
+      if (bladebitEnableHybridDiskMode && !workspaceLocation) {
+        throw new Error(t`Temp folder location is required for hybrid disk plotting with 16/128G RAM`);
+      }
+
       const plotAddConfig = {
         ...rest,
         delay: delay * 60,
         plotterName: formPlotterName,
         workspaceLocation,
         workspaceLocation2: formPlotterName === 'madmax' ? workspaceLocation2 || workspaceLocation : workspaceLocation2,
+        bladebitEnableDisk128Mode: bladebitEnableHybridDiskMode === '128' ? true : undefined,
+        bladebitEnableDisk16Mode: bladebitEnableHybridDiskMode === '16' ? true : undefined,
         farmerPublicKey: undefined as string | undefined,
         poolPublicKey: undefined as string | undefined,
       };
@@ -233,6 +257,7 @@ export default function PlotAddForm(props: Props) {
         <PlotAddChoosePlotter step={adjustStepCount()} onChange={handlePlotterChanged} />
         <PlotAddChooseKeys step={step++} currencyCode={currencyCode} fingerprint={fingerprint} />
         <PlotAddChooseSize step={step++} plotter={plotter} />
+        {plotterName === PlotterName.BLADEBIT_CUDA && <PlotAddSelectHybridDiskMode step={step++} plotter={plotter} />}
         <PlotAddSelectFinalDirectory step={step++} plotter={plotter} />
         <PlotAddNumberOfPlots step={step++} plotter={plotter} />
         <Flex justifyContent="flex-end">

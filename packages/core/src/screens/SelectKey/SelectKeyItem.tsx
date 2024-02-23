@@ -11,6 +11,7 @@ import Flex from '../../components/Flex';
 import { MenuItem } from '../../components/MenuItem';
 import More from '../../components/More';
 import useOpenDialog from '../../hooks/useOpenDialog';
+
 import EmojiAndColorPicker from './EmojiAndColorPicker';
 import SelectKeyDetailDialog from './SelectKeyDetailDialog';
 import SelectKeyRenameForm from './SelectKeyRenameForm';
@@ -187,7 +188,7 @@ export default function SelectKeyItem(props: SelectKeyItemProps) {
               sx={{
                 zIndex: 9,
                 backgroundColor: walletKeyTheme.emoji === '' ? color.main : 'none',
-                ':hover': {
+                '&:hover': {
                   backgroundColor: color.main,
                 },
                 width: '48px',

@@ -45,6 +45,8 @@ type Sync = {
 
 type BlockchainState = {
   blockMaxCost: number;
+  stakeFarm: number;
+  stakeFarmCalc: number;
   difficulty: number;
   genesisChallengeInitialized: boolean;
   mempoolCost: number;
@@ -53,7 +55,7 @@ type BlockchainState = {
   mempoolMinFees: MempoolMinFees;
   mempoolSize: number;
   nodeId: string;
-  peak: Peak;
+  peak: Peak | null; // Until FullNode is initialized, `peak` is `None(null)`
   space: number;
   averageBlockTime: number;
   subSlotIters: number;

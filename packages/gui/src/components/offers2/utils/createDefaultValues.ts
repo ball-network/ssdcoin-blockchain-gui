@@ -2,6 +2,7 @@ import { WalletType } from '@ssdcoin-network/api';
 import _ from 'lodash';
 
 import type OfferBuilderData from '../../../@types/OfferBuilderData';
+
 import { emptyDefaultValues } from './defaultValues';
 
 type CreateDefaultValuesParams = {
@@ -33,7 +34,7 @@ export default function createDefaultValues(params: CreateDefaultValuesParams | 
       ...clonedEmptyDefaultValues.offered,
       nfts,
       ssd: walletType === WalletType.STANDARD_WALLET ? [{ amount: '' }] : [],
-      tokens: walletType === WalletType.CAT && assetId ? [{ assetId, amount: '' }] : [],
+      tokens: [WalletType.CAT, WalletType.CRCAT].includes(walletType) && assetId ? [{ assetId, amount: '' }] : [],
     },
     requested: {
       ...clonedEmptyDefaultValues.requested,

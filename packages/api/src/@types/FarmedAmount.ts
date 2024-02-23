@@ -4,6 +4,7 @@ type FarmedAmount = {
   feeAmount: number;
   lastHeightFarmed: number;
   poolRewardAmount: number;
+  stakeFarmRewardAmount: number;
   lastTimeFarmed: number;
   blocksWon: number;
 };

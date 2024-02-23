@@ -1,9 +1,10 @@
 import { BlockchainState, ServiceName } from '@ssdcoin-network/api';
-import { useService } from '@ssdcoin-network/api-react';
 
 import FarmerStatus from '../constants/FarmerStatus';
 import FullNodeState from '../constants/FullNodeState';
+
 import useFullNodeState from './useFullNodeState';
+import useIsServiceRunning from './useIsServiceRunning';
 
 export default function useFarmerStatus(): {
   farmerStatus: FarmerStatus;
@@ -11,7 +12,7 @@ export default function useFarmerStatus(): {
 } {
   const { state: fullNodeState, isLoading: isLoadingFullNodeState, data: blockchainState } = useFullNodeState();
 
-  const { isRunning, isLoading: isLoadingIsRunning } = useService(ServiceName.FARMER);
+  const { isRunning, isLoading: isLoadingIsRunning } = useIsServiceRunning(ServiceName.FARMER);
 
   const isLoading = isLoadingIsRunning || isLoadingFullNodeState;
 

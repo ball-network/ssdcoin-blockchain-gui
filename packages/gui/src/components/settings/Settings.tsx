@@ -1,6 +1,6 @@
 import { useLocalStorage } from '@ssdcoin-network/api-react';
 import { Flex, LayoutDashboardSub, Mode, useMode } from '@ssdcoin-network/core';
-import { Trans } from '@lingui/macro';
+import { msg, Trans } from '@lingui/macro';
 import { Typography, Tab, Tabs } from '@mui/material';
 import Badge from '@mui/material/Badge';
 import React, { useMemo } from 'react';
@@ -26,21 +26,21 @@ export default function Settings() {
 
   const settingsTabs = useMemo(() => {
     let tabs = [
-      { id: 'general', label: 'General', Component: SettingsGeneral, path: 'general' },
+      { id: 'general', label: msg`General`, Component: SettingsGeneral, path: 'general' },
       {
         id: 'custody',
-        label: 'Custody',
+        label: msg`Custody`,
         Component: SettingsCustody,
         path: 'custody',
         badge: wasSettingsCustodyVisited ? undefined : 'NEW',
       },
-      { id: 'profiles', label: 'Profiles (DIDs)', Component: SettingsProfiles, path: 'profiles/*' },
-      { id: 'nft', label: 'NFT', Component: SettingsNFT, path: 'nft' },
-      { id: 'datalayer', label: 'DataLayer', Component: SettingsDataLayer, path: 'datalayer' },
-      { id: 'harvester', label: 'Harvester', Component: SettingsHarvester, path: 'harvester' },
-      { id: 'integration', label: 'Integration', Component: SettingsIntegration, path: 'integration' },
-      { id: 'notifications', label: 'Notifications', Component: SettingsNotifications, path: 'notifications' },
-      { id: 'advanced', label: 'Advanced', Component: SettingsAdvanced, path: 'advanced' },
+      { id: 'profiles', label: msg`Profiles (DIDs)`, Component: SettingsProfiles, path: 'profiles/*' },
+      { id: 'nft', label: msg`NFT`, Component: SettingsNFT, path: 'nft' },
+      { id: 'datalayer', label: msg`DataLayer`, Component: SettingsDataLayer, path: 'datalayer' },
+      { id: 'harvester', label: msg`Harvester`, Component: SettingsHarvester, path: 'harvester' },
+      { id: 'integration', label: msg`Integration`, Component: SettingsIntegration, path: 'integration' },
+      { id: 'notifications', label: msg`Notifications`, Component: SettingsNotifications, path: 'notifications' },
+      { id: 'advanced', label: msg`Advanced`, Component: SettingsAdvanced, path: 'advanced' },
     ];
     if (mode === Mode.WALLET) {
       tabs = tabs.filter((t) => t.id !== 'harvester');
@@ -82,7 +82,7 @@ export default function Settings() {
             sx={{ '& .MuiTabs-flexContainer': { paddingTop: '10px' } }}
           >
             {settingsTabs.map((tab) => {
-              let TabLabel = <Trans>{tab.label}</Trans>;
+              let TabLabel = <Trans id={tab.label.id} />;
               if (tab.badge) {
                 TabLabel = (
                   <Badge

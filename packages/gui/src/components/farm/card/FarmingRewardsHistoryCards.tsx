@@ -114,6 +114,16 @@ function FarmingRewardsHistoryCards() {
       </Typography>
       <Grid spacing={2} alignItems="stretch" container>
         <Grid xs={12} sm={6} md={4} item>
+          <CardSimple title={<Trans>Stake Reward</Trans>} value={
+            `${mojoToSSDCoinLocaleString(data?.stakeFarmRewardAmount, locale)} ${currencyCode}`
+          } loading={isLoading} error={error} />
+        </Grid>
+        <Grid xs={12} sm={6} md={4} item>
+          <CardSimple title={<Trans>Farmer Reward</Trans>} value={
+            `${mojoToSSDCoinLocaleString(data?.farmerRewardAmount, locale)} ${currencyCode}`
+          } loading={isLoading} error={error} />
+        </Grid>
+        <Grid xs={12} sm={6} md={4} item>
           {totalSSDCoinFarmedCard}
         </Grid>
         <Grid xs={12} sm={6} md={4} item>

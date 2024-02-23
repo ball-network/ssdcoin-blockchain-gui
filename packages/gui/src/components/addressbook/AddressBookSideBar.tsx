@@ -22,7 +22,7 @@ export default function AddressBookSideBar() {
   // - contact name
   function filterArray(arrayList, search: string) {
     return arrayList.filter((item: AddressContact) => {
-      const { dids, domainNames, addresses, name } = item;
+      const { dids, domainNames, addresses, stakeAddresses,name } = item;
 
       if (search === '') return true;
 
@@ -31,6 +31,18 @@ export default function AddressBookSideBar() {
       // filter by address name or address
       if (addresses && addresses.length > 0) {
         const filteredAddressesByName = addresses.filter(
+          (addr: any) =>
+            (addr.name && addr.name.toLowerCase().includes(searchTerm)) ||
+            (addr.address && addr.address.toLowerCase().includes(searchTerm))
+        );
+        if (filteredAddressesByName && filteredAddressesByName.length > 0) {
+          return true;
+        }
+      }
+
+      // filter by stake address name or address
+      if (stakeAddresses && stakeAddresses.length > 0) {
+        const filteredAddressesByName = stakeAddresses.filter(
           (addr: any) =>
             (addr.name && addr.name.toLowerCase().includes(searchTerm)) ||
             (addr.address && addr.address.toLowerCase().includes(searchTerm))

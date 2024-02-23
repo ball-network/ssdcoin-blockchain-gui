@@ -1,5 +1,5 @@
 import { useGetBlockchainStateQuery, useGetTotalHarvestersSummaryQuery } from '@ssdcoin-network/api-react';
-import { State, CardSimple, useCurrencyCode, mojoToSSDCoinLocaleString, useLocale } from '@ssdcoin-network/core';
+import { State, CardSimple, useCurrencyCode, mojoToSSDCoinLocaleString, useLocale, calculateReward } from '@ssdcoin-network/core';
 import { Trans } from '@lingui/macro';
 import { Grid, Typography, Box } from '@mui/material';
 import BigNumber from 'bignumber.js';
@@ -8,28 +8,12 @@ import React, { useMemo } from 'react';
 
 import FullNodeState from '../../../constants/FullNodeState';
 import useFullNodeState from '../../../hooks/useFullNodeState';
+
 import FarmCardNotAvailable from './FarmCardNotAvailable';
 
 const MOJO_PER_SSDCOIN = 1_000_000_000_000;
-const BLOCKS_PER_YEAR = 1_681_920; // 32 * 6 * 24 * 365
 function getBlockRewardByHeight(height: number) {
-  if (height === 0) {
-    return 21_000_000 * MOJO_PER_SSDCOIN;
-  }
-  if (height < 3 * BLOCKS_PER_YEAR) {
-    return 2 * MOJO_PER_SSDCOIN;
-  }
-  if (height < 6 * BLOCKS_PER_YEAR) {
-    return 1 * MOJO_PER_SSDCOIN;
-  }
-  if (height < 9 * BLOCKS_PER_YEAR) {
-    return 0.5 * MOJO_PER_SSDCOIN;
-  }
-  if (height < 12 * BLOCKS_PER_YEAR) {
-    return 0.25 * MOJO_PER_SSDCOIN;
-  }
-
-  return 0.125 * MOJO_PER_SSDCOIN;
+  return calculateReward(height) * MOJO_PER_SSDCOIN;
 }
 
 export default React.memo(FarmingRewardsCards);
@@ -106,7 +90,7 @@ function FarmingRewardsCards() {
 
     const estimatedDailySSD = new BigNumber(86_400)
       .div(expectedTimeToWinSeconds)
-      .multipliedBy(getBlockRewardByHeight(data.peak.height))
+      .multipliedBy(getBlockRewardByHeight(data.peak?.height))
       .dp(0);
 
     return (
@@ -134,7 +118,7 @@ function FarmingRewardsCards() {
 
     const estimatedMonthlySSD = new BigNumber(86_400 * 31)
       .div(expectedTimeToWinSeconds)
-      .multipliedBy(getBlockRewardByHeight(data.peak.height))
+      .multipliedBy(getBlockRewardByHeight(data.peak?.height))
       .dp(0);
 
     return (

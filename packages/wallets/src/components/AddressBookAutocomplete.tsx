@@ -55,7 +55,6 @@ export default function AddressBookAutocomplete(props: Props) {
     <FormControl variant="filled" fullWidth>
       <MaterialAutocomplete
         autoComplete
-        autoSelect
         blurOnSelect
         options={options}
         onChange={(_e, newValue) => handleChange(newValue)}
@@ -66,6 +65,7 @@ export default function AddressBookAutocomplete(props: Props) {
             label={<Trans>Address or Contact</Trans>}
             required={required}
             onBlur={onBlur}
+            onChange={(_e) => handleChange(_e.target.value)}
             {...rest}
             {...params}
           />

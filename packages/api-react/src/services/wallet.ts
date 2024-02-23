@@ -1,5 +1,5 @@
 /* eslint-disable no-param-reassign -- This file use Immer */
-import { CAT, DID, Farmer, NFT, Pool, WalletService, WalletType, toBech32m, VC, Staking } from '@ssdcoin-network/api';
+import { CAT, DID, Farmer, NFT, Pool, WalletService, WalletType, toBech32m, VC, Stake } from '@ssdcoin-network/api';
 import type { NFTInfo, Transaction, Wallet, WalletBalance } from '@ssdcoin-network/api';
 import BigNumber from 'bignumber.js';
 
@@ -39,6 +39,7 @@ const tagTypes = [
   'DaemonKey',
   'Notification',
   'AutoClaim',
+  'AutoWithdrawStake',
 ];
 
 const apiWithTag = api.enhanceEndpoints({
@@ -79,7 +80,7 @@ export const walletApi = apiWithTag.injectEndpoints({
               wallets.map(async (wallet: Wallet) => {
                 const { type } = wallet;
                 const meta: any = {};
-                if (type === WalletType.CAT) {
+                if ([WalletType.CAT, WalletType.CRCAT].includes(type)) {
                   // get CAT asset
                   const { data: assetData, error: assetError } = await fetchWithBQ({
                     command: 'getAssetId',
@@ -1453,22 +1454,32 @@ export const walletApi = apiWithTag.injectEndpoints({
     spendClawbackCoins: mutation(build, WalletService, 'spendClawbackCoins'),
 
 
-    findPoolNFT: mutation(build, Staking, 'findPoolNFT'),
+    findPoolNFT: mutation(build, Stake, 'findPoolNFT'),
 
-    recoverPoolNFT: mutation(build, Staking, 'recoverPoolNFT', {
+    recoverPoolNFT: mutation(build, Stake, 'recoverPoolNFT', {
       invalidatesTags: [
         { type: 'Transactions', id: 'LIST' },
       ],
     }),
 
-    stakingInfo: query(build, Staking, 'stakingInfo'),
+    setAutoWithdrawStake: mutation(build, Stake, 'setAutoWithdrawStake', {
+      invalidatesTags: [{ type: 'AutoWithdrawStake' }],
+    }),
+    getAutoWithdrawStake: query(build, Stake, 'getAutoWithdrawStake', {
+      providesTags: (result) => (result ? [{ type: 'AutoWithdrawStake' }] : []),
+    }),
 
-    stakingSend: build.mutation<
+    stakeInfo: query(build, Stake, 'stakeInfo'),
+
+    stakeSend: build.mutation<
       any,
       {
         walletId: number;
+        isStakeFarm: boolean;
+        stakeType: number;
+        address: string;
         amount: string;
-        fingerprint: number;
+        fee: string;
         waitForConfirmation?: boolean;
       }
     >({
@@ -1549,9 +1560,9 @@ export const walletApi = apiWithTag.injectEndpoints({
               }
 
               // make transaction
-              const { data: stakingSendData, error } = await fetchWithBQ({
-                command: 'stakingSend',
-                service: Staking,
+              const { data: stakeSendData, error } = await fetchWithBQ({
+                command: 'stakeSend',
+                service: Stake,
                 args: restArgs,
               });
 
@@ -1561,11 +1572,11 @@ export const walletApi = apiWithTag.injectEndpoints({
               }
 
               if (!waitForConfirmation) {
-                resolve(stakingSendData);
+                resolve(stakeSendData);
                 return;
               }
 
-              const { transaction } = stakingSendData;
+              const { transaction } = stakeSendData;
               if (!transaction) {
                 reject(new Error('Transaction is not present in response'));
                 return;
@@ -1577,7 +1588,7 @@ export const walletApi = apiWithTag.injectEndpoints({
             }),
           };
         } catch (error: any) {
-          console.log('error trx', error);
+          console.error('error trx', error);
           return {
             error,
           };
@@ -1588,15 +1599,16 @@ export const walletApi = apiWithTag.injectEndpoints({
       invalidatesTags: [{ type: 'Transactions', id: 'LIST' }],
     }),
 
-    stakingWithdraw: build.mutation<
+    stakeInfoOld: query(build, Stake, 'stakeInfoOld'),
+
+    stakeWithdrawOld: build.mutation<
       any,
       {
         walletId: number;
         amount: string;
-        fingerprint: number;
         waitForConfirmation?: boolean;
       }
-   >({
+    >({
       async queryFn(args, queryApi, _extraOptions, fetchWithBQ) {
         let subscribeResponse: any;
 
@@ -1674,9 +1686,9 @@ export const walletApi = apiWithTag.injectEndpoints({
               }
 
               // make transaction
-              const { data: stakingWithdrawData, error } = await fetchWithBQ({
-                command: 'stakingWithdraw',
-                service: Staking,
+              const { data: stakeWithdrawOldData, error } = await fetchWithBQ({
+                command: 'stakeWithdrawOld',
+                service: Stake,
                 args: restArgs,
               });
 
@@ -1686,11 +1698,11 @@ export const walletApi = apiWithTag.injectEndpoints({
               }
 
               if (!waitForConfirmation) {
-                resolve(stakingWithdrawData);
+                resolve(stakeWithdrawOldData);
                 return;
               }
 
-              const { transaction } = stakingWithdrawData;
+              const { transaction } = stakeWithdrawOldData;
               if (!transaction) {
                 reject(new Error('Transaction is not present in response'));
                 return;
@@ -1702,7 +1714,7 @@ export const walletApi = apiWithTag.injectEndpoints({
             }),
           };
         } catch (error: any) {
-          console.log('error trx', error);
+          console.error('error trx', error);
           return {
             error,
           };
@@ -1712,6 +1724,7 @@ export const walletApi = apiWithTag.injectEndpoints({
       },
       invalidatesTags: [{ type: 'Transactions', id: 'LIST' }],
     }),
+
   }),
 });
 
@@ -1777,6 +1790,7 @@ export const {
   useSpendCATMutation,
   useAddCATTokenMutation,
   useGetStrayCatsQuery,
+  useCrCatApprovePendingMutation,
 
   // PlotNFTS
   useGetPlotNFTsQuery,
@@ -1834,10 +1848,15 @@ export const {
   useGetAutoClaimQuery,
   useSpendClawbackCoinsMutation,
 
-  // staking
-  useStakingInfoQuery,
-  useStakingSendMutation,
-  useStakingWithdrawMutation,
+  // stake Old
+  useStakeInfoOldQuery,
+  useStakeWithdrawOldMutation,
+
+  // stake
+  useSetAutoWithdrawStakeMutation,
+  useGetAutoWithdrawStakeQuery,
+  useStakeInfoQuery,
+  useStakeSendMutation,
 
   useFindPoolNFTMutation,
   useRecoverPoolNFTMutation,

@@ -2,6 +2,7 @@ import { useMemo } from 'react';
 
 import { didToDIDId } from '../util/dids';
 import removeHexPrefix from '../util/removeHexPrefix';
+
 import useNFT from './useNFT';
 
 export type UseNFTMinterDIDResult = {
@@ -28,7 +29,7 @@ export default function useNFTMinterDID(nftId: string): UseNFTMinterDIDResult {
     let didNameLocal;
 
     if (didIdLocal === 'did:ssd:19qf3g9876t0rkq7tfdkc28cxfy424yzanea29rkzylq89kped9hq3q7wd2') {
-      didNameLocal = 'Ball Network';
+      didNameLocal = 'SSDCoin Network';
     }
 
     return [didIdLocal, hexDIDIdLocal, didNameLocal];

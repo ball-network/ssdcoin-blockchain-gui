@@ -8,7 +8,9 @@ import type RewardTargets from '../@types/RewardTargets';
 import type SignagePoint from '../@types/SignagePoint';
 import Client from '../Client';
 import type Message from '../Message';
+import PLOT_FILTER_CONSTANTS from '../constants/PlotFilter';
 import ServiceName from '../constants/ServiceName';
+
 import Service from './Service';
 import type { Options } from './Service';
 
@@ -48,6 +50,7 @@ export default class Farmer extends Service {
     valid: 0,
     stale: 0,
     invalid: 0,
+    insufficient: 0,
     missing: 0,
   };
 
@@ -57,6 +60,7 @@ export default class Farmer extends Service {
     valid: 0,
     stale: 0,
     invalid: 0,
+    insufficient: 0,
     missing: 0,
   };
 
@@ -182,21 +186,25 @@ export default class Farmer extends Service {
     this.totalMissingSps = 0;
   }
 
-  getFilterChallengeStat(height: number) {
+  getFilterChallengeStat(args: { height: number; isTestnet: boolean }) {
     const n = this.totalPlotFilterChallenge;
     const x = this.totalPlotsPassingFilter;
-    let fb = 9; // Filter bits
-    if (height < 5_496_000) {
-      fb = 9;
-    } else if (height < 10_542_000) {
-      fb = 8;
-    } else if (height < 15_592_000) {
-      fb = 7;
-    } else if (height < 20_643_000) {
-      fb = 6;
-    } else {
-      fb = 5;
+
+    const constants = args.isTestnet ? PLOT_FILTER_CONSTANTS.testnet10 : PLOT_FILTER_CONSTANTS.mainnet;
+    let fb = 9;
+
+    if (args.height >= constants.PLOT_FILTER_32_HEIGHT) {
+      fb -= 4;
+    } else if (args.height >= constants.PLOT_FILTER_64_HEIGHT) {
+      fb -= 3;
+    } else if (args.height >= constants.PLOT_FILTER_128_HEIGHT) {
+      fb -= 2;
+    } else if (args.height >= constants.HARD_FORK_HEIGHT) {
+      fb -= 1;
     }
+
+    fb = Math.max(0, fb);
+
     return {
       n,
       x,
@@ -240,6 +248,7 @@ export default class Farmer extends Service {
       valid: res.poolState.reduce((acc, val) => acc + val.validPartialsSinceStart, 0),
       stale: res.poolState.reduce((acc, val) => acc + val.stalePartialsSinceStart, 0),
       invalid: res.poolState.reduce((acc, val) => acc + val.invalidPartialsSinceStart, 0),
+      insufficient: res.poolState.reduce((acc, val) => acc + val.insufficientPartialsSinceStart, 0),
       missing: res.poolState.reduce((acc, val) => acc + val.missingPartialsSinceStart, 0),
     };
     return res;
@@ -255,6 +264,7 @@ export default class Farmer extends Service {
       valid: this.latestPartialStats.valid,
       stale: this.latestPartialStats.stale,
       invalid: this.latestPartialStats.invalid,
+      insufficient: this.latestPartialStats.insufficient,
       missing: this.latestPartialStats.missing,
     };
   }

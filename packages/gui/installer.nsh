@@ -81,8 +81,8 @@ Function checkIsSSDCoinRunning
   StrCpy $AlreadyAlerted 0
   loop:
     ClearErrors
-    ; Check if the main SSDCoin.exe process is running
-    ${nsProcess::FindProcess} "ssdcoin.exe" $IsSSDCoinProcessRunning
+    ; Check if the main ssd.exe process is running
+    ${nsProcess::FindProcess} "ssd.exe" $IsSSDCoinProcessRunning
     ${If} $IsSSDCoinProcessRunning == 0
       ${If} $AlreadyAlerted == 0
         StrCpy $AlreadyAlerted 1
@@ -139,7 +139,7 @@ FunctionEnd
 
 
 Function checkIsSSDCoinRunningLeave
-  ${nsProcess::FindProcess} "ssdcoin.exe" $R0
+  ${nsProcess::FindProcess} "ssd.exe" $R0
   Pop $0
 FunctionEnd
 !macroend ; customWelcomePage

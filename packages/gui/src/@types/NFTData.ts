@@ -1,6 +1,7 @@
 import { type NFTInfo } from '@ssdcoin-network/api';
 
 import type FileType from '../constants/FileType';
+
 import type Metadata from './Metadata';
 
 type NFTData = {

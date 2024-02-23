@@ -25,7 +25,7 @@ export default {
       contrastText: Color.Neutral[50],
     },
     highlight: {
-      main: Color.Sea.Primary,
+      main: Color.SSDCoin.Primary,
     },
     border: {
       main: Color.Neutral[300],
@@ -61,6 +61,13 @@ export default {
     },
   },
   components: {
+    MuiTooltip: {
+      styleOverrides: {
+        tooltip: {
+          backgroundColor: Color.Neutral[500],
+        },
+      },
+    },
     MuiSvgIcon: {
       variants: [
         {

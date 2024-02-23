@@ -3,13 +3,13 @@ import {
   useGetHarvesterConfigQuery,
   useGetPlottersQuery,
   useUpdateHarvesterConfigMutation,
-  useClientStartServiceMutation,
-  useClientStopServiceMutation,
+  useStartServiceMutation,
+  useStopServiceMutation,
 } from '@ssdcoin-network/api-react';
-import { ButtonLoading, Flex, SettingsSection, SettingsTitle, SettingsText } from '@ssdcoin-network/core';
+import { ButtonLoading, Flex, SettingsHR, SettingsSection, SettingsTitle, SettingsText } from '@ssdcoin-network/core';
 import { Trans } from '@lingui/macro';
 import { Warning as WarningIcon } from '@mui/icons-material';
-import { Alert, Divider, FormControlLabel, Grid, Switch, TextField, Snackbar } from '@mui/material';
+import { Alert, FormControlLabel, Grid, Switch, TextField, Snackbar } from '@mui/material';
 import React from 'react';
 
 const messageAnchorOrigin = { vertical: 'bottom' as const, horizontal: 'center' as const };
@@ -18,8 +18,8 @@ export default function SettingsHarvester() {
   const { data: plotters } = useGetPlottersQuery();
   const { data, isLoading } = useGetHarvesterConfigQuery();
   const [updateHarvesterConfig, { isLoading: isUpdating }] = useUpdateHarvesterConfigMutation();
-  const [startService, { isLoading: isStarting }] = useClientStartServiceMutation();
-  const [stopService, { isLoading: isStopping }] = useClientStopServiceMutation();
+  const [startService, { isLoading: isStarting }] = useStartServiceMutation();
+  const [stopService, { isLoading: isStopping }] = useStopServiceMutation();
   const [message, setMessage] = React.useState<React.ReactElement | false>(false);
   const [configUpdateRequests, setConfigUpdateRequests] = React.useState<HarvesterConfig>({
     useGpuHarvesting: null,
@@ -186,11 +186,11 @@ export default function SettingsHarvester() {
       return;
     }
 
-    await stopService({ service: ServiceName.HARVESTER, disableWait: true }).catch(onError);
+    await stopService({ service: ServiceName.HARVESTER }).catch(onError);
     if (error) {
       return;
     }
-    await startService({ service: ServiceName.HARVESTER, disableWait: true }).catch(onError);
+    await startService({ service: ServiceName.HARVESTER }).catch(onError);
     if (error) {
       return;
     }
@@ -388,9 +388,13 @@ export default function SettingsHarvester() {
       )}
 
       <Grid item xs={12} sm={12} lg={12}>
-        <Divider textAlign="left">
+        <SettingsHR />
+      </Grid>
+
+      <Grid item xs={12} sm={12} lg={12}>
+        <SettingsSection>
           <Trans>Plot</Trans>
-        </Divider>
+        </SettingsSection>
       </Grid>
 
       <Grid container gap={3}>
@@ -429,9 +433,13 @@ export default function SettingsHarvester() {
         </Grid>
 
         <Grid item xs={12} sm={12} lg={12}>
-          <Divider textAlign="left">
+          <SettingsHR />
+        </Grid>
+
+        <Grid item xs={12} sm={12} lg={12}>
+          <SettingsSection>
             <Trans>Compressed plot support</Trans>
-          </Divider>
+          </SettingsSection>
         </Grid>
 
         <Grid container>

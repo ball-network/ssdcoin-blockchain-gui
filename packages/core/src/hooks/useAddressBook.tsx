@@ -5,6 +5,7 @@ export default function useAddressBook(): [
   (
     name: string,
     addresses: ContactAddress[],
+    stakeAddresses: ContactAddress[],
     dids: ContactDID[],
     notes: string,
     nftId: string,
@@ -17,13 +18,15 @@ export default function useAddressBook(): [
     contactId: number,
     name: string,
     addresses: ContactAddress[],
+    stakeAddresses: ContactAddress[],
     dids: ContactDID[],
     notes: string,
     nftId: string,
     domainNames: ContactDomainName[],
     emoji: string
   ) => void, // editContact
-  (address: string) => AddressContact | undefined // getContactByAddress
+  (address: string) => AddressContact | undefined, // getContactByAddress
+  (address: string) => AddressContact | undefined // getContactByStakeAddress
 ] {
   // editContact
   const [addressBook, setAddressBook] = useState<AddressContact[]>([]);
@@ -50,6 +53,7 @@ export default function useAddressBook(): [
   function addContact(
     name: string,
     addresses: ContactAddress[],
+    stakeAddresses: ContactAddress[],
     dids: ContactDID[],
     notes: string,
     nftId: string,
@@ -61,6 +65,7 @@ export default function useAddressBook(): [
       contactId,
       name,
       addresses: [...addresses],
+      stakeAddresses: [...stakeAddresses],
       dids,
       notes,
       nftId,
@@ -85,6 +90,7 @@ export default function useAddressBook(): [
     contactId: number,
     name: string,
     addresses: ContactAddress[],
+    stakeAddresses: ContactAddress[],
     dids: ContactDID[],
     notes: string,
     nftId: string,
@@ -97,6 +103,7 @@ export default function useAddressBook(): [
       contactId,
       name,
       addresses: [...addresses],
+      stakeAddresses: [...stakeAddresses],
       dids,
       notes,
       nftId,
@@ -114,13 +121,20 @@ export default function useAddressBook(): [
     return result;
   }
 
-  return [addressBook, addContact, removeContact, getContactByContactId, editContact, getContactByAddress];
+  function getContactByStakeAddress(address: string) {
+    const result = addressBook.find(
+      (ab) => ab.stakeAddresses !== undefined && ab.stakeAddresses.some((c) => c.address === address)
+    );
+    return result;
+  }
+  return [addressBook, addContact, removeContact, getContactByContactId, editContact, getContactByAddress, getContactByStakeAddress];
 }
 
 type AddressContact = {
   contactId: number;
   name: string;
   addresses: ContactAddress[];
+  stakeAddresses: ContactAddress[],
   dids: ContactDID[];
   notes: string;
   nftId: string;

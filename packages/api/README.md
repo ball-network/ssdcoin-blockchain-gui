@@ -24,7 +24,7 @@ import sleep from 'sleep-promise';
 
 (async () => {
   const client = new Client({
-    url: 'wss://127.0.0.1:55400',
+    url: 'wss://127.0.0.1:23320',
     // key and crt files should be in your homedir in: .ssd/mainnet/config/ssl/daemon/
     cert: readFileSync('private_cert.crt'),
     key: readFileSync('private_key.key'),

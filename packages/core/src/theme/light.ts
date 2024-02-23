@@ -1,6 +1,7 @@
 import { createTheme } from '@mui/material/styles';
 
 import Color from '../constants/Color';
+
 import theme from './default';
 
 export default createTheme({
@@ -114,10 +115,10 @@ export default createTheme({
         border: Color.Forest[400],
         accent: Color.Forest[700],
       },
-      sea: {
-        main: Color.Sea[300],
-        border: Color.Sea[400],
-        accent: Color.Sea[700],
+      ssdcoin: {
+        main: Color.SSDCoin[300],
+        border: Color.SSDCoin[400],
+        accent: Color.SSDCoin[700],
       },
       glacier: {
         main: Color.Glacier[300],

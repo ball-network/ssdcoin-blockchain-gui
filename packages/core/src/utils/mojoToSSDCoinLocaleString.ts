@@ -1,6 +1,7 @@
 import BigNumber from 'bignumber.js';
 
 import Unit from '../constants/Unit';
+
 import ssdcoinFormatter from './ssdcoinFormatter';
 
 export default function mojoToSSDCoinLocaleString(mojo: string | number | BigNumber, locale?: string) {
